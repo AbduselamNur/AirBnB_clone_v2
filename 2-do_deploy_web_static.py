@@ -9,9 +9,8 @@ env.hosts = ["34.239.207.57", "100.26.216.20"]
 
 
 def do_deploy(archive_path):
-    """
-    a Fabric script (based on the file 1-pack_web_static.py)
-    that distributes an archive to your web servers"""
+    """a Fabric script (based on the file 1-pack_web_static.py)
+       that distributes an archive to your web servers"""
     if not exists(archive_path):
         return False
     try:
@@ -27,7 +26,7 @@ def do_deploy(archive_path):
         run("rm -f {}".format("/data/web_static/current"))
 
         run("ln -s {} {}".format(remote_folder, "/data/web_static/current"))
-	print("New version deployed!")
+        print("New version deployed!")
 
         return True
     except Exception:
