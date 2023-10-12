@@ -7,6 +7,7 @@ AirBnB Clone repo, using the function do_pack.
 from fabric.api import local
 from datetime import datetime
 
+
 def do_pack():
     """
     generates a .tgz archive from the contents of the web_static folder
@@ -14,11 +15,9 @@ def do_pack():
     try:
         local("mkdir -p versions")
         FORMAT = datetime.now()
-        file = "web_static_{}{}{}{}{}{}.tgz".format(
-                now.year, now.month, now.day, now.hour, now.minute, now.second)
+        file = "web_static_{}{}{}{}{}{}.tgz".format(now.year, now.month, now.day, now.hour, now.minute, now.second)
         res = local("tar -cvzf {} web_static".format(path))
         path = "versions/{}".format(file)
         return path
-
-    except Exception:
+    except:
         None
