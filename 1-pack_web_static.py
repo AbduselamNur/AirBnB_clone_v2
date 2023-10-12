@@ -15,10 +15,10 @@ def do_pack():
     """
     try:
         local("mkdir -p versions")
-        now = datetime.now()  # Fixed variable name from FORMAT to now
+        now = datetime.now()
         file = "web_static_{}{}{}{}{}{}.tgz".format(
             now.year, now.month, now.day, now.hour, now.minute, now.second)
-        path = "versions/{}".format(file)  # Moved path assignment before the local command
+        path = "versions/{}".format(file)
         res = local("tar -cvzf {} web_static".format(path))
         return path
 
