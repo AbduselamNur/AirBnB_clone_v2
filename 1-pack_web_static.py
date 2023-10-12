@@ -8,6 +8,7 @@ AirBnB Clone repo, using the function do_pack.
 from fabric.api import local
 from datetime import datetime
 
+
 def do_pack():
     """
     generates a .tgz archive from the contents of the web_static folder
@@ -24,4 +25,3 @@ def do_pack():
     except Exception as e:  # Specify the exception type
         print("An error occurred:", str(e))
         return None
-
