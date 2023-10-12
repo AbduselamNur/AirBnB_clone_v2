@@ -12,13 +12,14 @@ def do_pack():
     """
     generates a .tgz archive from the contents of the web_static folder
     """
-    local("mkdir -p versions")
-    FORMAT = datetime.now().strftime("%Y%M%D%H%M%S")
-    file = "web_static_{}.tgz".format(FORMAT)
-    path = "versions/{}".format(file)
-    res = "tar -cvzf {} web_static".format(path)
+    try:
+        local("mkdir -p versions")
+        FORMAT = datetime.now()
+        file = "web_static_{}{}{}{}{}{}.tgz".format(
+                now.year, now.month, now.day, now.hour, now.minute, now.second)
+        res = local("tar -cvzf {} web_static".format(path))
+        path = "versions/{}".format(file)
+        return path
 
-    if res.succeeded:
-        return file
-    else:
+    except Exception:
         None
