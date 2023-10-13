@@ -5,7 +5,7 @@ from os.path import exists
 from fabric.api import env, put, run
 
 
-env.hosts = [34.239.207.57, 100.26.216.20]
+env.hosts = ["34.239.207.57", "100.26.216.20"]
 
 
 def do_deploy(archive_path):
@@ -24,13 +24,10 @@ def do_deploy(archive_path):
         run("tar -xzf {} -C {}".format(remote_path, remote_folder))
 
         run("rm -f {}".format(remote_path))
-        run("mv {}/web_static/* {}".format(remote_folder, remote_path))
-        current_path = "/data/web_static/current"
+        run("rm -f {}".format("/data/web_static/current"))
 
-        if exist(current_path):
-            run("rm -f {}".format(current_path))
-
-        run("ln -s {} {}".format(remote_folder, current_path))
+        run("ln -s {} {}".format(remote_folder, "/data/web_static/current"))
+	print("New version deployed!")
 
         return True
     except Exception:
