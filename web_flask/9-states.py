@@ -15,23 +15,14 @@ def handel_teardown(self):
     storage.close()
 
 
-@app.route("/states", strict_slashes=False)
-def city_by_states():
-    """
-    Display state
-    """
-    states = storage.all(State).values()
-    return render_template('9-states.html', states=states, mode="all")
-
-
-@app.route("/states/<id>")
-def state_id(id):
-    """
-    Display State By ID
-    """
-    states = storage.all(State).values()
-    return render_template('9-states.html', states=states, id=id, mode="one")
-
+@app.route('/states', strict_slashes=False)
+@app.route('/states/<id>', strict_slashes=False)
+def states_with_id(id=None):
+    """ Display state/ID """
+    states = storage.all(State)
+    if id is not None:
+        id = 'State.' + id
+    return render_template('9-states.html', states=states, state_id=id)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
